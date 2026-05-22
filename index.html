@@ -59,7 +59,6 @@ body {
   66%       { transform: translate(-30px, 40px) scale(0.95); }
 }
 
-/* Grid overlay */
 .grid-overlay {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background-image:
@@ -88,7 +87,7 @@ nav.scrolled {
   letter-spacing: 3px; text-decoration: none; color: var(--text);
 }
 .nav-logo em { font-style: normal; color: var(--blue); }
-.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
 .nav-links a {
   color: var(--muted2); font-size: 12px; letter-spacing: 2px;
   text-decoration: none; font-family: 'Rajdhani', sans-serif; font-weight: 600;
@@ -100,8 +99,21 @@ nav.scrolled {
 }
 .nav-links a:hover { color: var(--blue2); }
 .nav-links a:hover::after { right: 0; }
+.nav-download {
+  font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+  color: var(--green); border: 1px solid rgba(34,197,94,0.35);
+  padding: 6px 16px; background: rgba(34,197,94,0.06);
+  transition: box-shadow 0.3s, background 0.3s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.nav-download:hover {
+  background: rgba(34,197,94,0.12);
+  box-shadow: 0 0 18px rgba(34,197,94,0.3);
+  color: #4ade80;
+}
+.nav-download::after { display: none !important; }
 
-/* Magnetic nav button */
 .nav-cta {
   position: relative; overflow: hidden;
   border: 1px solid rgba(79,124,255,0.5); background: transparent;
@@ -119,7 +131,7 @@ nav.scrolled {
 .nav-cta:hover { color: white; box-shadow: 0 0 24px rgba(79,124,255,0.5); }
 .nav-cta:hover::before { opacity: 1; }
 
-/* ── Marquee ticker ───────────────────────────────────────────── */
+/* ── Ticker ───────────────────────────────────────────────────── */
 .ticker {
   position: relative; z-index: 3;
   overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
@@ -146,8 +158,6 @@ nav.scrolled {
   align-items: center; justify-content: center;
   text-align: center; padding: 80px 24px 0; position: relative;
 }
-
-/* Animated ring behind title */
 .hero-ring {
   position: absolute; border-radius: 50%; pointer-events: none;
   border: 1px solid rgba(79,124,255,0.12);
@@ -160,7 +170,6 @@ nav.scrolled {
   0%, 100% { opacity: 0.3; transform: scale(1); }
   50%       { opacity: 0.08; transform: scale(1.03); }
 }
-
 .hero-eyebrow {
   font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 4px;
   color: var(--blue); text-transform: uppercase; margin-bottom: 24px;
@@ -172,8 +181,6 @@ nav.scrolled {
   background: linear-gradient(90deg, transparent, var(--blue));
 }
 .hero-eyebrow::after { transform: scaleX(-1); }
-
-/* Split-char title */
 .hero-title {
   font-family: 'Rajdhani', sans-serif;
   font-size: clamp(52px, 12vw, 130px);
@@ -192,21 +199,18 @@ nav.scrolled {
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: charIn 0.5s forwards, gradShift 5s 1s linear infinite;
 }
-@keyframes charIn {
-  to { opacity: 1; transform: translateY(0) rotateX(0); }
-}
+@keyframes charIn { to { opacity: 1; transform: translateY(0) rotateX(0); } }
 @keyframes gradShift {
   0%   { background-position: 0% 50%; }
   100% { background-position: 300% 50%; }
 }
-
 .hero-sub {
   font-size: clamp(13px, 2vw, 15px); color: var(--muted2);
   max-width: 500px; margin: 28px auto 44px; line-height: 1.8; font-weight: 300;
   opacity: 0; animation: fadeUp 0.7s 1s forwards;
 }
 
-/* ── Magnetic buttons ─────────────────────────────────────────── */
+/* ── Buttons ──────────────────────────────────────────────────── */
 .hero-btns {
   display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
   opacity: 0; animation: fadeUp 0.7s 1.2s forwards;
@@ -215,7 +219,7 @@ nav.scrolled {
   position: relative; overflow: hidden; cursor: pointer;
   font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
-  padding: 14px 38px; display: inline-block;
+  padding: 14px 38px; display: inline-flex; align-items: center; gap: 8px;
   transition: box-shadow 0.3s, transform 0.15s;
   clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
 }
@@ -228,18 +232,26 @@ nav.scrolled {
   background: transparent; border: 1px solid var(--border); color: var(--muted2);
 }
 .btn-mag-secondary:hover { border-color: var(--blue); color: var(--blue2); box-shadow: 0 0 20px rgba(79,124,255,0.15); }
+/* Download button — green accent */
+.btn-mag-download {
+  background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(34,197,94,0.05));
+  border: 1px solid rgba(34,197,94,0.5); color: #4ade80;
+}
+.btn-mag-download:hover {
+  box-shadow: 0 0 40px rgba(34,197,94,0.35), 0 0 80px rgba(34,197,94,0.1);
+  color: #fff; border-color: var(--green);
+}
 .btn-mag .ripple-bg {
   position: absolute; inset: 0;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s;
+  transform: translateX(-100%); transition: transform 0.6s;
 }
 .btn-mag:hover .ripple-bg { transform: translateX(100%); }
 
-/* Scroll indicator */
+/* Download icon */
+.dl-icon { font-size: 14px; line-height: 1; }
 
-
-/* ── Animated stats bar ───────────────────────────────────────── */
+/* ── Stats bar ────────────────────────────────────────────────── */
 .stats-bar {
   width: 100%; margin-top: 80px; padding: 24px 0;
   border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
@@ -263,6 +275,56 @@ nav.scrolled {
   font-family: 'Space Mono', monospace; margin-top: 4px; display: block;
 }
 
+/* ── Download section ─────────────────────────────────────────── */
+#download {
+  padding: 80px 48px; text-align: center;
+  background: linear-gradient(135deg, rgba(34,197,94,0.04), rgba(79,124,255,0.04));
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+#download::before {
+  content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 300px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(34,197,94,0.06), transparent 70%);
+  pointer-events: none;
+}
+.download-inner { max-width: 560px; margin: 0 auto; position: relative; }
+.download-version {
+  font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 3px;
+  color: var(--green); text-transform: uppercase; margin-bottom: 16px; display: block;
+}
+#download h2 {
+  font-family: 'Rajdhani', sans-serif; font-size: clamp(24px, 5vw, 38px); font-weight: 700;
+  margin-bottom: 12px; letter-spacing: 1px;
+}
+#download p { font-size: 13px; color: var(--muted2); line-height: 1.8; margin-bottom: 28px; }
+.btn-dl-big {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.4);
+  color: #4ade80; padding: 16px 40px;
+  font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
+  transition: background 0.3s, box-shadow 0.3s; position: relative; overflow: hidden;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+}
+.btn-dl-big:hover {
+  background: rgba(34,197,94,0.16);
+  box-shadow: 0 0 40px rgba(34,197,94,0.35);
+  color: #fff;
+}
+.btn-dl-big .btn-shine {
+  position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+  transition: left 0.6s;
+}
+.btn-dl-big:hover .btn-shine { left: 150%; }
+.dl-meta {
+  margin-top: 16px; font-family: 'Space Mono', monospace; font-size: 10px;
+  color: var(--muted); display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
+}
+.dl-meta span { display: flex; align-items: center; gap: 6px; }
+.dl-meta span::before { content: '·'; color: var(--blue); }
+
 /* ── Section shared ───────────────────────────────────────────── */
 .section-eyebrow {
   font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 4px;
@@ -284,45 +346,31 @@ nav.scrolled {
 .feat-card {
   padding: 36px 30px; background: var(--card);
   border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
-  position: relative; overflow: hidden;
-  transition: background 0.3s;
+  position: relative; overflow: hidden; transition: background 0.3s;
 }
 .feat-card:nth-child(3n) { border-right: none; }
 .feat-card:nth-child(n+4) { border-bottom: none; }
-
-/* Spotlight hover glow */
 .feat-card::after {
   content: ''; position: absolute; inset: 0; opacity: 0;
   background: radial-gradient(400px circle at var(--cx,50%) var(--cy,50%), rgba(79,124,255,0.08), transparent 70%);
   transition: opacity 0.4s;
 }
 .feat-card:hover::after { opacity: 1; }
-/* Top accent line slides in on hover */
 .feat-card::before {
   content: ''; position: absolute; top: 0; left: -100%; right: 100%; height: 1px;
   background: linear-gradient(90deg, var(--blue), var(--purple));
   transition: left 0.5s, right 0.5s;
 }
 .feat-card:hover::before { left: 0; right: 0; }
-
 .feat-icon {
   width: 40px; height: 40px; background: var(--bg2); border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
-.feat-card:hover .feat-icon {
-  border-color: rgba(79,124,255,0.5);
-  box-shadow: 0 0 16px rgba(79,124,255,0.2);
-}
+.feat-card:hover .feat-icon { border-color: rgba(79,124,255,0.5); box-shadow: 0 0 16px rgba(79,124,255,0.2); }
 .feat-icon svg { width: 18px; height: 18px; stroke: var(--blue); fill: none; stroke-width: 1.5; }
-.feat-num {
-  font-family: 'Space Mono', monospace; font-size: 9px; color: var(--muted);
-  letter-spacing: 2px; margin-bottom: 8px;
-}
-.feat-title {
-  font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700;
-  letter-spacing: 1px; margin-bottom: 8px; transition: color 0.3s;
-}
+.feat-num { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 2px; margin-bottom: 8px; }
+.feat-title { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; transition: color 0.3s; }
 .feat-card:hover .feat-title { color: var(--blue2); }
 .feat-desc { font-size: 12px; color: var(--muted2); line-height: 1.75; }
 
@@ -346,10 +394,7 @@ nav.scrolled {
   background: linear-gradient(90deg, transparent, var(--blue), transparent);
   transform: scaleX(0); transition: transform 0.3s;
 }
-.weapon-chip:hover {
-  color: var(--blue2); border-color: rgba(79,124,255,0.3);
-  box-shadow: 0 0 12px rgba(79,124,255,0.12); transform: translateY(-2px);
-}
+.weapon-chip:hover { color: var(--blue2); border-color: rgba(79,124,255,0.3); box-shadow: 0 0 12px rgba(79,124,255,0.12); transform: translateY(-2px); }
 .weapon-chip:hover::before { transform: scaleX(1); }
 .weapon-cat { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 3px; }
 
@@ -366,51 +411,29 @@ nav.scrolled {
   transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s;
 }
 .price-card:hover { transform: translateY(-8px) scale(1.01); }
-.price-card.featured {
-  border-color: rgba(79,124,255,0.6);
-  box-shadow: 0 0 50px rgba(79,124,255,0.15), inset 0 0 50px rgba(79,124,255,0.03);
-}
+.price-card.featured { border-color: rgba(79,124,255,0.6); box-shadow: 0 0 50px rgba(79,124,255,0.15), inset 0 0 50px rgba(79,124,255,0.03); }
 .price-card.featured:hover { box-shadow: 0 20px 60px rgba(79,124,255,0.3); }
 .price-card.featured::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, var(--blue), var(--purple), var(--blue));
-  background-size: 200% 100%;
-  animation: slide-gradient 3s linear infinite;
+  background-size: 200% 100%; animation: slide-gradient 3s linear infinite;
   box-shadow: 0 0 20px rgba(79,124,255,0.6);
 }
-@keyframes slide-gradient {
-  0%   { background-position: 0% 0%; }
-  100% { background-position: 200% 0%; }
-}
+@keyframes slide-gradient { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
 .price-badge {
   font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 3px;
   padding: 4px 12px; display: inline-block; margin-bottom: 18px;
   border: 1px solid rgba(79,124,255,0.3); color: var(--blue2); background: rgba(79,124,255,0.08);
 }
 .price-badge.hot { color: var(--purple); border-color: rgba(168,85,247,0.3); background: rgba(168,85,247,0.08); }
-.price-name {
-  font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 600;
-  letter-spacing: 3px; text-transform: uppercase; color: var(--muted2); margin-bottom: 6px;
-}
-.price-amount {
-  font-family: 'Rajdhani', sans-serif; font-size: clamp(44px, 8vw, 60px); font-weight: 700; line-height: 1;
-}
+.price-name { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--muted2); margin-bottom: 6px; }
+.price-amount { font-family: 'Rajdhani', sans-serif; font-size: clamp(44px, 8vw, 60px); font-weight: 700; line-height: 1; }
 .price-amount sup { font-size: 20px; vertical-align: top; margin-top: 12px; display: inline-block; color: var(--muted2); }
-.price-card.featured .price-amount {
-  background: linear-gradient(135deg, var(--blue2), var(--purple));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
+.price-card.featured .price-amount { background: linear-gradient(135deg, var(--blue2), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .price-period { font-size: 11px; color: var(--muted); margin: 6px 0 28px; font-family: 'Space Mono', monospace; }
 .price-feats { list-style: none; margin-bottom: 32px; text-align: left; }
-.price-feats li {
-  font-size: 12px; color: var(--muted2); padding: 7px 0;
-  border-bottom: 1px solid rgba(26,37,64,0.6);
-  display: flex; align-items: center; gap: 10px;
-}
-.price-feats li::before {
-  content: ''; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
-  background: var(--blue); box-shadow: 0 0 6px var(--blue);
-}
+.price-feats li { font-size: 12px; color: var(--muted2); padding: 7px 0; border-bottom: 1px solid rgba(26,37,64,0.6); display: flex; align-items: center; gap: 10px; }
+.price-feats li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; background: var(--blue); box-shadow: 0 0 6px var(--blue); }
 .btn-buy {
   display: block; width: 100%; padding: 13px;
   font-family: 'Rajdhani', sans-serif; font-size: 12px; font-weight: 700;
@@ -422,11 +445,7 @@ nav.scrolled {
 .btn-buy-outline:hover { border-color: var(--blue); color: var(--blue2); box-shadow: 0 0 20px rgba(79,124,255,0.2); }
 .btn-buy-filled { background: rgba(79,124,255,0.1); border: 1px solid var(--blue); color: var(--blue2); }
 .btn-buy-filled:hover { box-shadow: 0 0 32px rgba(79,124,255,0.5); transform: translateY(-1px); }
-.btn-shine {
-  position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
-  transition: left 0.6s;
-}
+.btn-shine { position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent); transition: left 0.6s; }
 .btn-buy:hover .btn-shine { left: 150%; }
 
 /* ── Discord ──────────────────────────────────────────────────── */
@@ -443,18 +462,9 @@ nav.scrolled {
   pointer-events: none;
 }
 .discord-inner { max-width: 560px; margin: 0 auto; position: relative; }
-.discord-logo {
-  font-size: 36px; margin-bottom: 20px; display: block;
-  animation: float 3s ease-in-out infinite;
-}
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
-}
-#discord h2 {
-  font-family: 'Rajdhani', sans-serif; font-size: clamp(24px, 5vw, 38px); font-weight: 700;
-  margin-bottom: 12px; letter-spacing: 1px;
-}
+.discord-logo { font-size: 36px; margin-bottom: 20px; display: block; animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+#discord h2 { font-family: 'Rajdhani', sans-serif; font-size: clamp(24px, 5vw, 38px); font-weight: 700; margin-bottom: 12px; letter-spacing: 1px; }
 #discord p { font-size: 13px; color: var(--muted2); line-height: 1.8; margin-bottom: 28px; }
 .btn-discord {
   display: inline-flex; align-items: center; gap: 10px;
@@ -482,7 +492,6 @@ footer p { font-size: 11px; color: var(--muted); font-family: 'Space Mono', mono
 .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
 .reveal.vis { opacity: 1; transform: none; }
 
-/* ── Keyframes ────────────────────────────────────────────────── */
 @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
@@ -496,7 +505,7 @@ footer p { font-size: 11px; color: var(--muted); font-family: 'Space Mono', mono
   nav { padding: 0 20px; }
   .nav-links { display: none; }
   #hero { padding: 90px 20px 0; }
-  #features, #pricing, #weapons, #discord { padding: 72px 20px; }
+  #features, #pricing, #weapons, #discord, #download { padding: 72px 20px; }
   .features-grid { grid-template-columns: 1fr; }
   .feat-card { border-right: none !important; }
   footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
@@ -516,7 +525,6 @@ footer p { font-size: 11px; color: var(--muted); font-family: 'Space Mono', mono
 </head>
 <body>
 
-<!-- Aurora background -->
 <div class="aurora">
   <div class="aurora-orb"></div>
   <div class="aurora-orb"></div>
@@ -534,6 +542,7 @@ footer p { font-size: 11px; color: var(--muted); font-family: 'Space Mono', mono
     <li><a href="#weapons">Weapons</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#discord">Discord</a></li>
+    <li><a class="nav-download" href="PrismWare.exe" download>⬇ Download</a></li>
   </ul>
   <a class="nav-cta" href="https://prismware-rs.mysellauth.com" target="_blank">Get Access</a>
 </nav>
@@ -565,18 +574,38 @@ footer p { font-size: 11px; color: var(--muted); font-family: 'Space Mono', mono
     <a class="btn-mag btn-mag-primary" href="https://prismware-rs.mysellauth.com" target="_blank">
       <span class="ripple-bg"></span>Purchase Access
     </a>
+    <a class="btn-mag btn-mag-download" href="PrismWare.exe" download>
+      <span class="ripple-bg"></span><span class="dl-icon">⬇</span>Download PrismWare.exe
+    </a>
     <a class="btn-mag btn-mag-secondary" href="#features">
       <span class="ripple-bg"></span>View Features
     </a>
   </div>
-
-
 
   <div class="stats-bar">
     <div class="stat-item"><span class="stat-num" data-count="13">0</span><span class="stat-lbl">Weapons</span></div>
     <div class="stat-item"><span class="stat-num" data-count="5">0</span><span class="stat-lbl">Scope Modes</span></div>
     <div class="stat-item"><span class="stat-num" data-count="1000" data-sfx="Hz">0</span><span class="stat-lbl">Poll Rate</span></div>
     <div class="stat-item"><span class="stat-num" data-count="1" data-sfx="ms">0</span><span class="stat-lbl">Precision</span></div>
+  </div>
+</section>
+
+<!-- DOWNLOAD SECTION -->
+<section id="download">
+  <div class="download-inner reveal">
+    <span class="download-version">▸ PrismWare v1.0 · win-x64 · Standalone</span>
+    <h2>Download <span style="color:var(--green)">PrismWare</span>.</h2>
+    <p>Single executable. No installer. Drop it anywhere and run it.<br/>License key required on first launch.</p>
+    <a class="btn-dl-big" href="PrismWare.exe" download>
+      <span class="btn-shine"></span>
+      ⬇ &nbsp;Download PrismWare.exe
+    </a>
+    <div class="dl-meta">
+      <span>Windows 10/11 x64</span>
+      <span>Standalone .exe</span>
+      <span>No install required</span>
+      <span>License key required</span>
+    </div>
   </div>
 </section>
 
@@ -715,26 +744,24 @@ footer p { font-size: 11px; color: var(--muted); font-family: 'Space Mono', mono
   <p>© 2025 PrismWare · For educational use only.</p>
   <div class="footer-links">
     <a href="https://prismware-rs.mysellauth.com" target="_blank">Store</a>
+    <a href="PrismWare.exe" download>Download</a>
     <a href="https://discord.gg/7tqZuKStyr" target="_blank">Discord</a>
     <a href="#">Terms</a>
   </div>
 </footer>
 
-</div><!-- /wrap -->
+</div>
 
 <script>
-// ── Nav scroll ──────────────────────────────────────────────────
 window.addEventListener('scroll', () =>
   document.getElementById('nav').classList.toggle('scrolled', scrollY > 40));
 
-// ── Ticker ─────────────────────────────────────────────────────
 const tickerItems = [
-  'PrismWare v2.0', '13 Weapons', '5 Scope Modes', 'Makcu Hardware',
+  'PrismWare v1.0', '13 Weapons', '5 Scope Modes', 'Makcu Hardware',
   '1000Hz Engine', 'HWID Locked', 'Auto Config Sync', 'Humanization',
   'Hotkey System', 'Lifetime Access', 'discord.gg/7tqZuKStyr', 'prismware.wtf'
 ];
 const track = document.getElementById('ticker-track');
-// Duplicate for seamless loop
 for (let i = 0; i < 2; i++) {
   tickerItems.forEach(t => {
     const s = document.createElement('span'); s.textContent = t; track.appendChild(s);
@@ -742,7 +769,6 @@ for (let i = 0; i < 2; i++) {
   });
 }
 
-// ── Split-char hero title ───────────────────────────────────────
 document.querySelectorAll('.hero-title [data-text]').forEach(line => {
   const isLine2 = line.classList.contains('line2');
   const text = line.dataset.text;
@@ -751,21 +777,18 @@ document.querySelectorAll('.hero-title [data-text]').forEach(line => {
     const span = document.createElement('span');
     span.className = 'char';
     span.textContent = ch === ' ' ? '\u00A0' : ch;
-    // Stagger: line1 starts at 0.5s, line2 starts at 0.85s
     const base = isLine2 ? 0.85 : 0.5;
     span.style.animationDelay = (base + i * 0.06) + 's';
     line.appendChild(span);
   });
 });
 
-// ── Scroll reveal ───────────────────────────────────────────────
 const revealObs = new IntersectionObserver(entries =>
   entries.forEach((e, i) => {
     if (e.isIntersecting) setTimeout(() => e.target.classList.add('vis'), i * 60);
   }), { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-// ── Weapon chips stagger ────────────────────────────────────────
 new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
@@ -774,7 +797,6 @@ new IntersectionObserver(entries => {
   });
 }, { threshold: 0.2 }).observe(document.getElementById('weapons-grid'));
 
-// ── Counter animation ───────────────────────────────────────────
 new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
@@ -791,7 +813,6 @@ new IntersectionObserver(entries => {
   });
 }, { threshold: 0.5 }).observe(document.querySelector('.stats-bar'));
 
-// ── Feature card spotlight glow ─────────────────────────────────
 document.querySelectorAll('.feat-card').forEach(card =>
   card.addEventListener('mousemove', e => {
     const r = card.getBoundingClientRect();
@@ -799,7 +820,6 @@ document.querySelectorAll('.feat-card').forEach(card =>
     card.style.setProperty('--cy', ((e.clientY - r.top)  / r.height * 100) + '%');
   }));
 
-// ── Magnetic buttons ────────────────────────────────────────────
 document.querySelectorAll('.btn-mag').forEach(btn => {
   btn.addEventListener('mousemove', e => {
     const r = btn.getBoundingClientRect();
