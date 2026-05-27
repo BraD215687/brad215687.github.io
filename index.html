@@ -94,7 +94,215 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:52px;he
 .product-img-inner{animation:heroCard .8s .4s both,float 6s 1.2s ease-in-out infinite}
 @keyframes heroCard{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 
+
+/* ── INTERACTIVE PREVIEW ── */
+#pw-preview{
+  width:100%;background:#000;border-radius:9px;overflow:hidden;
+  font-family:'Inter',sans-serif;user-select:none;
+}
+.pw-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;background:#000;border-bottom:1px solid #1a1a1a;
+}
+.pw-bar-left{display:flex;align-items:center;gap:8px}
+.pw-logo-dot{
+  width:26px;height:26px;border-radius:6px;
+  background:#0a0a0a;border:1px solid #252525;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:#fff;
+  content:'P';
+}
+.pw-logo-dot::after{content:'P';display:block;text-align:center;line-height:1;font-size:12px;font-weight:800;color:#fff}
+.pw-title{font-size:12px;font-weight:700;color:#fff}
+.pw-bar-right{display:flex;align-items:center;gap:6px}
+.pw-status{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px #22c55e}
+.pw-status-txt{font-size:10px;color:#555;font-family:'JetBrains Mono',monospace}
+
+.pw-tabs{display:flex;border-bottom:1px solid #1a1a1a}
+.pw-tab{
+  flex:1;padding:8px;background:transparent;border:none;
+  color:#555;font-size:11px;font-weight:500;cursor:pointer;
+  border-bottom:2px solid transparent;transition:color .15s,border-color .15s;
+  font-family:'Inter',sans-serif;
+}
+.pw-tab.active{color:#fff;border-bottom-color:#4169e1}
+.pw-tab:hover:not(.active){color:#888}
+
+.pw-panel{padding:10px;display:flex;flex-direction:column;gap:8px}
+
+.pw-card{
+  background:#0a0a0a;border:1px solid #1a1a1a;border-radius:6px;padding:10px 12px;
+}
+.pw-card-label{font-size:9px;font-weight:600;color:#333;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.pw-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.pw-lbl{font-size:11px;color:#666}
+.pw-val{font-size:11px;color:#4169e1;font-family:'JetBrains Mono',monospace}
+.pw-sep{height:1px;background:#111;margin:6px 0}
+
+.pw-slider{
+  width:100%;height:2px;border-radius:1px;
+  -webkit-appearance:none;appearance:none;
+  background:linear-gradient(to right,#4169e1 50%,#1a1a1a 50%);
+  cursor:pointer;margin:4px 0;
+}
+.pw-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:10px;height:10px;
+  border-radius:50%;background:#fff;cursor:pointer;
+  box-shadow:0 0 4px rgba(65,105,225,.4);
+}
+.pw-slider::-moz-range-thumb{
+  width:10px;height:10px;border-radius:50%;
+  background:#fff;cursor:pointer;border:none;
+}
+.pw-slider:input{
+  background:linear-gradient(to right,#4169e1 calc(var(--val)*1%),#1a1a1a calc(var(--val)*1%));
+}
+
+.pw-weapons{display:flex;flex-wrap:wrap;gap:4px}
+.pw-wep{
+  padding:3px 8px;border-radius:4px;border:1px solid #1a1a1a;
+  background:#000;color:#555;font-size:10px;cursor:pointer;
+  transition:all .15s;font-family:'Inter',sans-serif;
+}
+.pw-wep.active{border-color:#4169e1;color:#fff;background:#050d24}
+.pw-wep:hover:not(.active){border-color:#252525;color:#888}
+
+.pw-scopes{display:flex;gap:4px}
+.pw-scope{
+  flex:1;padding:5px 4px;border-radius:4px;border:1px solid #1a1a1a;
+  background:#000;color:#555;font-size:10px;cursor:pointer;
+  transition:all .15s;font-family:'Inter',sans-serif;text-align:center;
+}
+.pw-scope.active{border-color:#4169e1;color:#fff;background:#050d24}
+.pw-scope:hover:not(.active){border-color:#252525;color:#888}
+
+.pw-toggle{
+  width:32px;height:17px;border-radius:9px;background:#1a1a1a;
+  position:relative;cursor:pointer;transition:background .2s;border:1px solid #252525;flex-shrink:0;
+}
+.pw-toggle.active{background:#4169e1;border-color:#4169e1}
+.pw-thumb{
+  width:11px;height:11px;border-radius:50%;background:#555;
+  position:absolute;top:2px;left:2px;transition:transform .2s,background .2s;
+}
+.pw-toggle.active .pw-thumb{transform:translateX(15px);background:#fff}
+
+.pw-bind-row{display:flex;align-items:center;justify-content:space-between}
+.pw-key{
+  background:#111;border:1px solid #252525;border-radius:4px;
+  padding:3px 8px;font-size:10px;color:#888;font-family:'JetBrains Mono',monospace;
+}
+
+.pw-statusbar{
+  padding:6px 14px;background:#000;border-top:1px solid #1a1a1a;
+}
+#pw-bar-txt{font-size:9px;color:#333;font-family:'JetBrains Mono',monospace}
+
 /* ── NAV ── */
+
+/* ── INTERACTIVE PREVIEW ── */
+#pw-preview{
+  width:100%;background:#000;border-radius:9px;overflow:hidden;
+  font-family:'Inter',sans-serif;user-select:none;
+}
+.pw-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;background:#000;border-bottom:1px solid #1a1a1a;
+}
+.pw-bar-left{display:flex;align-items:center;gap:8px}
+.pw-logo-dot{
+  width:26px;height:26px;border-radius:6px;
+  background:#0a0a0a;border:1px solid #252525;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:#fff;
+  content:'P';
+}
+.pw-logo-dot::after{content:'P';display:block;text-align:center;line-height:1;font-size:12px;font-weight:800;color:#fff}
+.pw-title{font-size:12px;font-weight:700;color:#fff}
+.pw-bar-right{display:flex;align-items:center;gap:6px}
+.pw-status{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px #22c55e}
+.pw-status-txt{font-size:10px;color:#555;font-family:'JetBrains Mono',monospace}
+
+.pw-tabs{display:flex;border-bottom:1px solid #1a1a1a}
+.pw-tab{
+  flex:1;padding:8px;background:transparent;border:none;
+  color:#555;font-size:11px;font-weight:500;cursor:pointer;
+  border-bottom:2px solid transparent;transition:color .15s,border-color .15s;
+  font-family:'Inter',sans-serif;
+}
+.pw-tab.active{color:#fff;border-bottom-color:#4169e1}
+.pw-tab:hover:not(.active){color:#888}
+
+.pw-panel{padding:10px;display:flex;flex-direction:column;gap:8px}
+
+.pw-card{
+  background:#0a0a0a;border:1px solid #1a1a1a;border-radius:6px;padding:10px 12px;
+}
+.pw-card-label{font-size:9px;font-weight:600;color:#333;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.pw-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.pw-lbl{font-size:11px;color:#666}
+.pw-val{font-size:11px;color:#4169e1;font-family:'JetBrains Mono',monospace}
+.pw-sep{height:1px;background:#111;margin:6px 0}
+
+.pw-slider{
+  width:100%;height:2px;border-radius:1px;
+  -webkit-appearance:none;appearance:none;
+  background:linear-gradient(to right,#4169e1 50%,#1a1a1a 50%);
+  cursor:pointer;margin:4px 0;
+}
+.pw-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:10px;height:10px;
+  border-radius:50%;background:#fff;cursor:pointer;
+  box-shadow:0 0 4px rgba(65,105,225,.4);
+}
+.pw-slider::-moz-range-thumb{
+  width:10px;height:10px;border-radius:50%;
+  background:#fff;cursor:pointer;border:none;
+}
+.pw-slider:input{
+  background:linear-gradient(to right,#4169e1 calc(var(--val)*1%),#1a1a1a calc(var(--val)*1%));
+}
+
+.pw-weapons{display:flex;flex-wrap:wrap;gap:4px}
+.pw-wep{
+  padding:3px 8px;border-radius:4px;border:1px solid #1a1a1a;
+  background:#000;color:#555;font-size:10px;cursor:pointer;
+  transition:all .15s;font-family:'Inter',sans-serif;
+}
+.pw-wep.active{border-color:#4169e1;color:#fff;background:#050d24}
+.pw-wep:hover:not(.active){border-color:#252525;color:#888}
+
+.pw-scopes{display:flex;gap:4px}
+.pw-scope{
+  flex:1;padding:5px 4px;border-radius:4px;border:1px solid #1a1a1a;
+  background:#000;color:#555;font-size:10px;cursor:pointer;
+  transition:all .15s;font-family:'Inter',sans-serif;text-align:center;
+}
+.pw-scope.active{border-color:#4169e1;color:#fff;background:#050d24}
+.pw-scope:hover:not(.active){border-color:#252525;color:#888}
+
+.pw-toggle{
+  width:32px;height:17px;border-radius:9px;background:#1a1a1a;
+  position:relative;cursor:pointer;transition:background .2s;border:1px solid #252525;flex-shrink:0;
+}
+.pw-toggle.active{background:#4169e1;border-color:#4169e1}
+.pw-thumb{
+  width:11px;height:11px;border-radius:50%;background:#555;
+  position:absolute;top:2px;left:2px;transition:transform .2s,background .2s;
+}
+.pw-toggle.active .pw-thumb{transform:translateX(15px);background:#fff}
+
+.pw-bind-row{display:flex;align-items:center;justify-content:space-between}
+.pw-key{
+  background:#111;border:1px solid #252525;border-radius:4px;
+  padding:3px 8px;font-size:10px;color:#888;font-family:'JetBrains Mono',monospace;
+}
+
+.pw-statusbar{
+  padding:6px 14px;background:#000;border-top:1px solid #1a1a1a;
+}
+#pw-bar-txt{font-size:9px;color:#333;font-family:'JetBrains Mono',monospace}
+
 /* ── NAV ── */
 nav{
   border-bottom:1px solid var(--bord);height:56px;
@@ -412,32 +620,97 @@ footer{padding:48px 0;border-top:1px solid var(--bord)}
 <div class="product">
   <div class="product-img">
     <div class="product-badge">Undetected · 2026</div>
-    <div class="product-img-inner">
-      <div class="fake-ui">
-        <div class="fake-ui-bar">
-          <div class="fake-ui-d" style="background:#4169e1"></div>
-          <div class="fake-ui-d" style="background:#333"></div>
-          <div class="fake-ui-d" style="background:#333"></div>
-          <div class="fake-ui-r w40" style="margin-left:auto"></div>
+    <div class="product-img-inner" style="aspect-ratio:unset;height:auto">
+      <div id="pw-preview">
+        <!-- Title bar -->
+        <div class="pw-bar">
+          <div class="pw-bar-left">
+            <div class="pw-logo-dot"></div>
+            <span class="pw-title">Prism<span style="color:#4169e1">Ware</span></span>
+          </div>
+          <div class="pw-bar-right">
+            <div class="pw-status" id="pw-status-dot"></div>
+            <span class="pw-status-txt" id="pw-status-txt">Ready</span>
+          </div>
         </div>
-        <div class="fake-ui-s">
-          <div class="fake-ui-l"></div>
-          <div class="fake-ui-sl"></div>
-          <div class="fake-ui-r w65"></div>
+
+        <!-- Nav tabs -->
+        <div class="pw-tabs">
+          <button class="pw-tab active" onclick="pwTab(this,'recoil')">Recoil</button>
+          <button class="pw-tab" onclick="pwTab(this,'keybinds')">Keybinds</button>
         </div>
-        <div class="fake-ui-s">
-          <div class="fake-ui-l" style="background:rgba(147,51,234,.4)"></div>
-          <div class="fake-ui-sl s2"></div>
-          <div class="fake-ui-r w80"></div>
-          <div class="fake-ui-r w40"></div>
+
+        <!-- RECOIL TAB -->
+        <div class="pw-panel" id="pw-recoil">
+          <!-- Weapon selector -->
+          <div class="pw-card">
+            <div class="pw-card-label">WEAPON</div>
+            <div class="pw-weapons">
+              <button class="pw-wep active" onclick="pwWep(this,'AK-47')">AK-47</button>
+              <button class="pw-wep" onclick="pwWep(this,'LR-300')">LR-300</button>
+              <button class="pw-wep" onclick="pwWep(this,'MP5A4')">MP5A4</button>
+              <button class="pw-wep" onclick="pwWep(this,'M249')">M249</button>
+              <button class="pw-wep" onclick="pwWep(this,'Thompson')">Thompson</button>
+              <button class="pw-wep" onclick="pwWep(this,'Custom SMG')">Custom SMG</button>
+            </div>
+          </div>
+
+          <!-- Sliders -->
+          <div class="pw-card">
+            <div class="pw-card-label">CONTROLS</div>
+            <div class="pw-row"><span class="pw-lbl">X Control</span><span class="pw-val" id="xval">100</span></div>
+            <input class="pw-slider" type="range" min="0" max="100" value="100" oninput="document.getElementById('xval').textContent=this.value"/>
+            <div class="pw-row" style="margin-top:10px"><span class="pw-lbl">Y Control</span><span class="pw-val" id="yval">100</span></div>
+            <input class="pw-slider" type="range" min="0" max="100" value="100" oninput="document.getElementById('yval').textContent=this.value"/>
+          </div>
+
+          <!-- Toggles -->
+          <div class="pw-card">
+            <div class="pw-card-label">OPTIONS</div>
+            <div class="pw-row"><span class="pw-lbl">Recoil Enabled</span><div class="pw-toggle active" onclick="pwToggle(this)"><div class="pw-thumb"></div></div></div>
+            <div class="pw-sep"></div>
+            <div class="pw-row"><span class="pw-lbl">Humanize</span><div class="pw-toggle" onclick="pwToggle(this)"><div class="pw-thumb"></div></div></div>
+            <div class="pw-sep"></div>
+            <div class="pw-row"><span class="pw-lbl">Burst Mode</span><div class="pw-toggle" onclick="pwToggle(this)"><div class="pw-thumb"></div></div></div>
+          </div>
+
+          <!-- Scope -->
+          <div class="pw-card">
+            <div class="pw-card-label">SCOPE</div>
+            <div class="pw-scopes">
+              <button class="pw-scope active" onclick="pwScope(this)">Iron</button>
+              <button class="pw-scope" onclick="pwScope(this)">Holo</button>
+              <button class="pw-scope" onclick="pwScope(this)">Handmade</button>
+              <button class="pw-scope" onclick="pwScope(this)">8x</button>
+            </div>
+          </div>
         </div>
-        <div class="fake-ui-s">
-          <div class="fake-ui-l"></div>
-          <div class="fake-ui-r w65"></div>
+
+        <!-- KEYBINDS TAB -->
+        <div class="pw-panel" id="pw-keybinds" style="display:none">
+          <div class="pw-card">
+            <div class="pw-card-label">CONTROLS</div>
+            <div class="pw-bind-row"><span class="pw-lbl">Toggle Menu</span><div class="pw-key">Insert</div></div>
+            <div class="pw-sep"></div>
+            <div class="pw-bind-row"><span class="pw-lbl">Toggle Recoil</span><div class="pw-key">F1</div></div>
+          </div>
+          <div class="pw-card">
+            <div class="pw-card-label">WEAPONS</div>
+            <div class="pw-bind-row"><span class="pw-lbl">Prev Weapon</span><div class="pw-key">Z</div></div>
+            <div class="pw-sep"></div>
+            <div class="pw-bind-row"><span class="pw-lbl">Next Weapon</span><div class="pw-key">X</div></div>
+          </div>
+          <div class="pw-card">
+            <div class="pw-card-label">SCOPES</div>
+            <div class="pw-bind-row"><span class="pw-lbl">Scope Up</span><div class="pw-key">PageUp</div></div>
+            <div class="pw-sep"></div>
+            <div class="pw-bind-row"><span class="pw-lbl">Scope Down</span><div class="pw-key">PageDown</div></div>
+          </div>
         </div>
-        <div class="fake-ui-btns">
-          <div class="fake-ui-btn"></div>
-          <div class="fake-ui-btn"></div>
+
+        <!-- Status bar -->
+        <div class="pw-statusbar">
+          <span id="pw-bar-txt">PrismWare Engine &nbsp;·&nbsp; Ready &nbsp;·&nbsp; 1000Hz</span>
         </div>
       </div>
     </div>
@@ -708,6 +981,36 @@ faqs.forEach(([q,a])=>{
 
 // stagger faq items
 document.querySelectorAll('.faq-item').forEach((el,i)=>el.style.transitionDelay=(i*60)+'ms');
+
+// ── Interactive preview ──
+function pwTab(el, tab) {
+  document.querySelectorAll('.pw-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('pw-recoil').style.display   = tab === 'recoil'   ? 'flex' : 'none';
+  document.getElementById('pw-keybinds').style.display = tab === 'keybinds' ? 'flex' : 'none';
+}
+function pwWep(el, name) {
+  document.querySelectorAll('.pw-wep').forEach(w => w.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('pw-bar-txt').textContent = `PrismWare Engine  ·  ${name}  ·  1000Hz`;
+}
+function pwScope(el) {
+  document.querySelectorAll('.pw-scope').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+}
+function pwToggle(el) {
+  el.classList.toggle('active');
+}
+// Slider gradient track update
+document.querySelectorAll('.pw-slider').forEach(sl => {
+  function upd() {
+    const pct = (sl.value - sl.min) / (sl.max - sl.min) * 100;
+    sl.style.background = `linear-gradient(to right,#4169e1 ${pct}%,#1a1a1a ${pct}%)`;
+  }
+  sl.addEventListener('input', upd);
+  upd();
+});
+
 </script>
 </body>
 </html>
