@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Member Login — PrismWare</title>
+<meta name="description" content="PrismWare member portal. Enter your license key to access your download."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;-webkit-font-smoothing:antialiased}
+:root{
+  --bg:#000;--bg1:#0a0a0a;--bord:#1a1a1a;--bord2:#222;
+  --text:#fff;--muted:#888;--dim:#444;
+  --blue:#4169e1;--green:#22c55e;--red:#ef4444;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;
+  display:flex;flex-direction:column;min-height:100vh}
+
+nav{
+  border-bottom:1px solid var(--bord);height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;
+}
+.nav-logo{font-size:15px;font-weight:700;text-decoration:none;color:var(--text)}
+.nav-logo span{color:var(--blue)}
+.nav-back{font-size:13px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s}
+.nav-back:hover{color:var(--text)}
+.nav-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:32px}
+
+.card{
+  width:100%;max-width:400px;
+  border:1px solid var(--bord2);border-radius:8px;
+  background:var(--bg1);overflow:hidden;
+}
+.card-header{padding:28px 28px 0}
+.card-logo{font-size:16px;font-weight:700;margin-bottom:20px}
+.card-logo span{color:var(--blue)}
+h1{font-size:22px;font-weight:700;letter-spacing:-.3px;margin-bottom:6px}
+.card-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:24px}
+.card-body{padding:0 28px 28px}
+
+label{display:block;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;margin-top:16px}
+label:first-of-type{margin-top:0}
+
+input{
+  width:100%;background:#000;border:1px solid var(--bord2);border-radius:6px;
+  padding:11px 14px;font-size:13px;font-family:'Inter',sans-serif;
+  color:var(--text);outline:none;transition:border-color .15s;
+  letter-spacing:.3px;
+}
+input:focus{border-color:var(--dim)}
+input::placeholder{color:var(--dim)}
+
+.err{margin-top:12px;padding:10px 12px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);border-radius:6px;font-size:12px;color:#f87171;display:none;line-height:1.5}
+.ok{margin-top:12px;padding:10px 12px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:6px;font-size:12px;color:#4ade80;display:none;line-height:1.5}
+
+button{
+  margin-top:16px;width:100%;background:var(--text);color:var(--bg);
+  border:none;border-radius:6px;padding:12px;font-size:13px;font-weight:600;
+  font-family:'Inter',sans-serif;cursor:pointer;letter-spacing:-.1px;
+  transition:opacity .15s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+button:hover:not(:disabled){opacity:.88}
+button:disabled{opacity:.4;cursor:not-allowed}
+
+.spin{width:13px;height:13px;border:2px solid rgba(0,0,0,.2);border-top-color:#000;border-radius:50%;animation:sp .6s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* download */
+.dl{display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--bord)}
+.dl-title{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px}
+.dl-link{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 14px;border:1px solid rgba(34,197,94,.25);border-radius:6px;
+  background:rgba(34,197,94,.04);text-decoration:none;color:var(--text);
+  transition:background .15s,border-color .15s;
+}
+.dl-link:hover{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.4)}
+.dl-left{display:flex;align-items:center;gap:10px}
+.dl-left svg{width:15px;height:15px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dl-name{font-size:13px;font-weight:500}
+.dl-sub{font-size:11px;color:var(--muted);margin-top:1px}
+.dl-arr{color:var(--green);font-size:14px}
+.dl-note{margin-top:10px;font-size:11px;color:var(--dim);line-height:1.6;text-align:center}
+.dl-note a{color:var(--muted);text-decoration:none}
+.dl-note a:hover{color:var(--text)}
+
+.card-footer{
+  padding:14px 28px;border-top:1px solid var(--bord);
+  display:flex;justify-content:space-between;
+}
+.card-footer a{font-size:12px;color:var(--dim);text-decoration:none;transition:color .15s}
+.card-footer a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Prism<span>Ware</span></a>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back
+  </a>
+</nav>
+
+<main>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-logo">Prism<span>Ware</span></div>
+      <h1>Member login</h1>
+      <p class="card-sub">Enter your license key to access your download.</p>
+    </div>
+    <div class="card-body">
+      <label for="ki">License key</label>
+      <input id="ki" type="text" placeholder="PRISM-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false"/>
+
+      <div id="err" class="err"></div>
+      <div id="ok" class="ok"></div>
+
+      <button id="btn" onclick="go()"><span id="bt">Access Download</span></button>
+
+      <div class="dl" id="dl">
+        <div class="dl-title">Your download</div>
+        <a href="https://github.com/BraD215687/brad215687.github.io/releases/download/Prismware/PrismWare.exe" class="dl-link" download>
+          <div class="dl-left">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            <div>
+              <div class="dl-name">PrismWare.exe</div>
+              <div class="dl-sub">Latest release · Windows x64</div>
+            </div>
+          </div>
+          <span class="dl-arr">↓</span>
+        </a>
+        <div class="dl-note">HWID locked on first run. Need to transfer? <a href="https://discord.gg/7tqZuKStyr" target="_blank">Discord support</a>.</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a href="https://prismware-rs.mysellauth.com" target="_blank">Get a key →</a>
+      <a href="https://discord.gg/7tqZuKStyr" target="_blank">Discord support</a>
+    </div>
+  </div>
+</main>
+
+<script>
+const SB_URL  = 'https://bfwoeoqriopyakzyxqhk.supabase.co';
+const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJmd29lb3FyaW9weWFrenl4cWhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NjE5NzQsImV4cCI6MjA5MzMzNzk3NH0.AZb9kimXBwixY7-JdNsZ8alVIq1BRiHctxdHvCDBUdc';
+
+const ki = document.getElementById('ki');
+const btn = document.getElementById('btn');
+const bt  = document.getElementById('bt');
+const err = document.getElementById('err');
+const ok  = document.getElementById('ok');
+const dl  = document.getElementById('dl');
+
+const saved = localStorage.getItem('pw_key');
+if(saved) ki.value = saved;
+ki.addEventListener('keydown', e => e.key === 'Enter' && go());
+ki.addEventListener('input', () => ki.value = ki.value.toUpperCase().replace(/[^A-Z0-9-]/g,''));
+
+async function go() {
+  const key = ki.value.trim();
+  if(!key || key === 'PRISM-XXXX-XXXX-XXXX') return;
+  btn.disabled = true; bt.innerHTML = '<div class="spin"></div>';
+  err.style.display = 'none'; ok.style.display = 'none'; dl.style.display = 'none';
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/license_keys?key=eq.${encodeURIComponent(key)}&select=key,active,expires_at,note`, {
+      headers:{'apikey':SB_ANON,'Authorization':`Bearer ${SB_ANON}`}
+    });
+    if(!r.ok) throw new Error(`Server error ${r.status}`);
+    const rows = await r.json();
+    if(!rows||!rows.length){ showErr('Invalid license key.'); return; }
+    const row = rows[0];
+    if(!row.active){ showErr('This license has been revoked. Contact support.'); return; }
+    if(row.expires_at && Date.now() > new Date(row.expires_at).getTime()){
+      showErr(`License expired ${new Date(row.expires_at).toLocaleDateString()}. Renew at the store.`); return;
+    }
+    localStorage.setItem('pw_key', key);
+    showOk(row);
+  } catch(e) { showErr(`Connection error: ${e.message}`); }
+}
+
+function showErr(m){ err.textContent=m; err.style.display='block'; bt.textContent='Try Again'; btn.disabled=false; }
+function showOk(row){
+  const tier = row.note||'active';
+  const exp = row.expires_at ? new Date(row.expires_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : 'Lifetime';
+  ok.textContent = `✓ Valid · ${tier} · ${exp}`;
+  ok.style.display = 'block';
+  dl.style.display = 'block';
+  bt.textContent = '✓ Authenticated';
+  btn.style.background = 'rgba(34,197,94,.1)';
+  btn.style.border = '1px solid rgba(34,197,94,.25)';
+  btn.style.color = 'var(--green)';
+  btn.disabled = false;
+}
+</script>
+</body>
+</html>
