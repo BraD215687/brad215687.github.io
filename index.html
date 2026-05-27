@@ -618,9 +618,83 @@ footer{padding:48px 0;border-top:1px solid var(--bord)}
 
 <!-- PRODUCT HERO -->
 <div class="product">
-  <div class="product-img" style="display:flex;align-items:center;justify-content:center;padding:48px">
-    <img src="prismware_box.png" alt="PrismWare"
-         style="max-width:380px;width:100%;object-fit:contain;filter:drop-shadow(0 12px 60px rgba(65,105,225,.35));animation:heroCard .8s .4s both"/>
+  <div class="product-img" style="display:flex;align-items:center;justify-content:center;padding:40px;background:var(--bg1)">
+    <div id="pw-preview" style="width:100%;max-width:420px">
+      <div class="pw-bar">
+        <div class="pw-bar-left">
+          <div class="pw-logo-dot"></div>
+          <span class="pw-title">Prism<span style="color:#4169e1">Ware</span></span>
+        </div>
+        <div class="pw-bar-right">
+          <div class="pw-status"></div>
+          <span class="pw-status-txt">Ready</span>
+        </div>
+      </div>
+      <div class="pw-tabs">
+        <button class="pw-tab active" onclick="pwTab(this,'recoil')">Recoil</button>
+        <button class="pw-tab" onclick="pwTab(this,'keybinds')">Keybinds</button>
+      </div>
+      <div class="pw-panel" id="pw-recoil">
+        <div class="pw-card">
+          <div class="pw-card-label">WEAPON</div>
+          <div class="pw-weapons">
+            <button class="pw-wep active" onclick="pwWep(this,'AK-47')">AK-47</button>
+            <button class="pw-wep" onclick="pwWep(this,'LR-300')">LR-300</button>
+            <button class="pw-wep" onclick="pwWep(this,'MP5A4')">MP5A4</button>
+            <button class="pw-wep" onclick="pwWep(this,'M249')">M249</button>
+            <button class="pw-wep" onclick="pwWep(this,'Thompson')">Thompson</button>
+            <button class="pw-wep" onclick="pwWep(this,'Custom SMG')">Custom SMG</button>
+          </div>
+        </div>
+        <div class="pw-card">
+          <div class="pw-card-label">CONTROLS</div>
+          <div class="pw-row"><span class="pw-lbl">X Control</span><span class="pw-val" id="xval">100</span></div>
+          <input class="pw-slider" type="range" min="0" max="100" value="100" oninput="document.getElementById('xval').textContent=this.value"/>
+          <div class="pw-row" style="margin-top:10px"><span class="pw-lbl">Y Control</span><span class="pw-val" id="yval">100</span></div>
+          <input class="pw-slider" type="range" min="0" max="100" value="100" oninput="document.getElementById('yval').textContent=this.value"/>
+        </div>
+        <div class="pw-card">
+          <div class="pw-card-label">OPTIONS</div>
+          <div class="pw-row"><span class="pw-lbl">Recoil Enabled</span><div class="pw-toggle active" onclick="pwToggle(this)"><div class="pw-thumb"></div></div></div>
+          <div class="pw-sep"></div>
+          <div class="pw-row"><span class="pw-lbl">Humanize</span><div class="pw-toggle" onclick="pwToggle(this)"><div class="pw-thumb"></div></div></div>
+          <div class="pw-sep"></div>
+          <div class="pw-row"><span class="pw-lbl">Burst Mode</span><div class="pw-toggle" onclick="pwToggle(this)"><div class="pw-thumb"></div></div></div>
+        </div>
+        <div class="pw-card">
+          <div class="pw-card-label">SCOPE</div>
+          <div class="pw-scopes">
+            <button class="pw-scope active" onclick="pwScope(this)">Iron</button>
+            <button class="pw-scope" onclick="pwScope(this)">Holo</button>
+            <button class="pw-scope" onclick="pwScope(this)">Handmade</button>
+            <button class="pw-scope" onclick="pwScope(this)">8x</button>
+          </div>
+        </div>
+      </div>
+      <div class="pw-panel" id="pw-keybinds" style="display:none">
+        <div class="pw-card">
+          <div class="pw-card-label">CONTROLS</div>
+          <div class="pw-bind-row"><span class="pw-lbl">Toggle Menu</span><div class="pw-key">Insert</div></div>
+          <div class="pw-sep"></div>
+          <div class="pw-bind-row"><span class="pw-lbl">Toggle Recoil</span><div class="pw-key">F1</div></div>
+        </div>
+        <div class="pw-card">
+          <div class="pw-card-label">WEAPONS</div>
+          <div class="pw-bind-row"><span class="pw-lbl">Prev Weapon</span><div class="pw-key">Z</div></div>
+          <div class="pw-sep"></div>
+          <div class="pw-bind-row"><span class="pw-lbl">Next Weapon</span><div class="pw-key">X</div></div>
+        </div>
+        <div class="pw-card">
+          <div class="pw-card-label">SCOPES</div>
+          <div class="pw-bind-row"><span class="pw-lbl">Scope Up</span><div class="pw-key">PageUp</div></div>
+          <div class="pw-sep"></div>
+          <div class="pw-bind-row"><span class="pw-lbl">Scope Down</span><div class="pw-key">PageDown</div></div>
+        </div>
+      </div>
+      <div class="pw-statusbar">
+        <span id="pw-bar-txt">PrismWare Engine &nbsp;·&nbsp; Ready &nbsp;·&nbsp; 1000Hz</span>
+      </div>
+    </div>
   </div>
   <div class="product-info">
     <div style="margin:0 0 24px 0">
